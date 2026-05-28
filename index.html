@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MI-MIDI</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div class="eyebrow">midi-llm steering demo</div>
+        <h1>MI-MIDI - Towards Mechanistic Interpretability of symbolic music models</h1>
+        <p class="author">Jakub Poćwiardowski</p>
+      </section>
+
+      <section class="demo-card" aria-labelledby="demo-heading">
+        <div class="card-header">
+          <div>
+            <p class="kicker">Concept</p>
+            <h2 id="demo-heading">Interactive steering demo</h2>
+          </div>
+        </div>
+
+        <div class="concept-grid" id="conceptGrid"></div>
+
+        <div class="control-panel">
+          <div class="alpha-readout">
+            <span>Alpha</span>
+            <strong id="alphaValue">0</strong>
+          </div>
+
+          <div class="slider-wrap">
+            <div class="slider-labels">
+              <span id="minAlpha">-</span>
+              <span>0</span>
+              <span id="maxAlpha">+</span>
+            </div>
+            <input id="alphaSlider" type="range" min="0" max="0" value="0" step="1">
+            <div class="tick-row" id="tickRow"></div>
+          </div>
+        </div>
+
+        <div class="sample-stage">
+          <div class="sample-meta">
+            <p class="kicker">Current sample</p>
+            <h3 id="sampleTitle">Tempo</h3>
+            <p id="sampleDescription"></p>
+          </div>
+
+          <div class="visualizer" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <audio id="audioPlayer" controls preload="metadata"></audio>
+
+          <div class="links">
+            <a id="mp3Link" href="#" download>MP3</a>
+            <a id="midiLink" href="#" download>MIDI</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
