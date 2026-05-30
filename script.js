@@ -38,10 +38,10 @@ const concepts = [
 ];
 
 const conceptGrid = document.querySelector("#conceptGrid");
-const lambdaSlider = document.querySelector("#lambdaSlider");
-const lambdaValue = document.querySelector("#lambdaValue");
-const minLambda = document.querySelector("#minLambda");
-const maxLambda = document.querySelector("#maxLambda");
+const alphaSlider = document.querySelector("#alphaSlider");
+const alphaValue = document.querySelector("#alphaValue");
+const minAlpha = document.querySelector("#minAlpha");
+const maxAlpha = document.querySelector("#maxAlpha");
 const tickRow = document.querySelector("#tickRow");
 const sampleTitle = document.querySelector("#sampleTitle");
 const sampleDescription = document.querySelector("#sampleDescription");
@@ -51,9 +51,9 @@ const midiLink = document.querySelector("#midiLink");
 
 let activeConcept = concepts[0];
 
-function sample(lambda, mp3Path) {
+function sample(alpha, mp3Path) {
   return {
-    lambda,
+    alpha,
     mp3Path,
     midiPath: mp3Path.replace(/\.mp3$/, ".mid"),
   };
@@ -99,28 +99,28 @@ function syncConceptButtons() {
 }
 
 function renderSlider() {
-  lambdaSlider.min = "0";
-  lambdaSlider.max = String(activeConcept.samples.length - 1);
-  lambdaSlider.step = "1";
+  alphaSlider.min = "0";
+  alphaSlider.max = String(activeConcept.samples.length - 1);
+  alphaSlider.step = "1";
 
-  const zeroIndex = activeConcept.samples.findIndex((item) => item.lambda === 0);
-  lambdaSlider.value = String(Math.max(zeroIndex, 0));
+  const zeroIndex = activeConcept.samples.findIndex((item) => item.alpha === 0);
+  alphaSlider.value = String(Math.max(zeroIndex, 0));
 
-  minLambda.textContent = formatLambda(activeConcept.samples[0].lambda);
-  maxLambda.textContent = formatLambda(activeConcept.samples.at(-1).lambda);
+  minAlpha.textContent = formatLambda(activeConcept.samples[0].alpha);
+  maxAlpha.textContent = formatLambda(activeConcept.samples.at(-1).alpha);
   tickRow.innerHTML = activeConcept.samples
-    .map((item) => `<span>${formatLambda(item.lambda)}</span>`)
+    .map((item) => `<span>${formatLambda(item.alpha)}</span>`)
     .join("");
 }
 
-function updateSample(index = Number(lambdaSlider.value)) {
+function updateSample(index = Number(alphaSlider.value)) {
   const selected = activeConcept.samples[index];
   const direction =
-    selected.lambda < 0 ? "decrease" : selected.lambda > 0 ? "increase" : "neutral";
+    selected.alpha < 0 ? "decrease" : selected.alpha > 0 ? "increase" : "neutral";
 
-  lambdaSlider.value = String(index);
-  lambdaValue.textContent = formatLambda(selected.lambda);
-  sampleTitle.textContent = `${activeConcept.label}: lambda ${formatLambda(selected.lambda)}`;
+  alphaSlider.value = String(index);
+  alphaValue.textContent = formatLambda(selected.alpha);
+  sampleTitle.textContent = `${activeConcept.label}: lambda ${formatLambda(selected.alpha)}`;
   sampleDescription.textContent = `${activeConcept.summary} Direction: ${direction}.`;
 
   audioPlayer.src = encodeURI(selected.mp3Path);
@@ -128,7 +128,7 @@ function updateSample(index = Number(lambdaSlider.value)) {
   midiLink.href = encodeURI(selected.midiPath);
 }
 
-lambdaSlider.addEventListener("input", () => updateSample());
+alphaSlider.addEventListener("input", () => updateSample());
 
 renderConcepts();
 renderSlider();
