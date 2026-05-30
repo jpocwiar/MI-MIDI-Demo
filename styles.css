@@ -204,11 +204,11 @@ h2 {
   border-radius: 26px;
 }
 
-.alpha-readout {
+.lambda-readout {
   min-width: 128px;
 }
 
-.alpha-readout span {
+.lambda-readout span {
   display: block;
   margin-bottom: 8px;
   color: var(--muted);
@@ -218,7 +218,7 @@ h2 {
   text-transform: uppercase;
 }
 
-.alpha-readout strong {
+.lambda-readout strong {
   display: block;
   font-size: clamp(2rem, 5vw, 4rem);
   line-height: 1;
