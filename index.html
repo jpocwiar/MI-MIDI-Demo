@@ -1,74 +1,60 @@
 <!doctype html>
-<html lang="en">
+<html lang="pl">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>MI-MIDI</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="Dwujęzyczny atlas steeringu i activation patchingu w modelach generujących muzykę symboliczną.">
+    <link rel="icon" href="data:,">
     <link rel="stylesheet" href="styles.css">
+    <title>MI-MIDI — atlas interwencji</title>
   </head>
   <body>
-    <main class="shell">
-      <section class="hero">
-        <div class="eyebrow">midi-llm steering demo</div>
-        <h1>MI-MIDI - Towards Mechanistic Interpretability of symbolic music models</h1>
-        <p class="author">Jakub Poćwiardowski</p>
-      </section>
+    <header class="hero">
+      <div class="language-switch" aria-label="Language">
+        <button class="language-button" type="button" data-language="pl">PL</button>
+        <button class="language-button" type="button" data-language="en">EN</button>
+      </div>
+      <div class="eyebrow" data-text="heroEyebrow"></div>
+      <h1 data-text="heroTitle"></h1>
+      <p class="lead" data-text="heroLead"></p>
+      <div class="stats" id="stats"></div>
+      <a class="sae-link" href="https://jpocwiar.github.io/MI-MIDIv2-Demo/">
+        <span data-text="saeLinkKicker"></span>
+        <strong data-text="saeLink"></strong>
+        <span aria-hidden="true">→</span>
+      </a>
+    </header>
 
-      <section class="demo-card" aria-labelledby="demo-heading">
-        <div class="card-header">
-          <div>
-            <p class="kicker">Concept</p>
-            <h2 id="demo-heading">Interactive steering demo</h2>
-          </div>
-        </div>
+    <section class="method">
+      <details>
+        <summary data-text="methodSummary"></summary>
+        <div class="method-grid" id="methodGrid"></div>
+      </details>
+    </section>
 
-        <div class="concept-grid" id="conceptGrid"></div>
+    <nav class="toolbar" aria-label="Intervention type">
+      <div class="tabs">
+        <button class="tab is-active" type="button" data-view="steering" data-text="steeringTab"></button>
+        <button class="tab" type="button" data-view="patching" data-text="patchingTab"></button>
+      </div>
+      <div class="toolbar-language" aria-label="Language">
+        <button class="language-button" type="button" data-language="pl">PL</button>
+        <button class="language-button" type="button" data-language="en">EN</button>
+      </div>
+    </nav>
 
-        <div class="control-panel">
-          <div class="alpha-readout">
-            <span>Lambda</span>
-            <strong id="alphaValue">0</strong>
-          </div>
-
-          <div class="slider-wrap">
-            <div class="slider-labels">
-              <span id="minAlpha">-</span>
-              <span>0</span>
-              <span id="maxAlpha">+</span>
-            </div>
-            <input id="alphaSlider" type="range" min="0" max="0" value="0" step="1">
-            <div class="tick-row" id="tickRow"></div>
-          </div>
-        </div>
-
-        <div class="sample-stage">
-          <div class="sample-meta">
-            <p class="kicker">Current sample</p>
-            <h3 id="sampleTitle">Tempo</h3>
-            <p id="sampleDescription"></p>
-          </div>
-
-          <div class="visualizer" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-
-          <audio id="audioPlayer" controls preload="metadata"></audio>
-
-          <div class="links">
-            <a id="mp3Link" href="#" download>MP3</a>
-            <a id="midiLink" href="#" download>MIDI</a>
-          </div>
-        </div>
-      </section>
+    <main>
+      <section id="steeringView" class="view"></section>
+      <section id="patchingView" class="view" hidden></section>
     </main>
 
+    <footer class="footer">
+      <p data-text="footerAudio"></p>
+      <p data-text="footerProvenance"></p>
+      <p><a href="https://jpocwiar.github.io/MI-MIDIv2-Demo/" data-text="saeFooter"></a></p>
+    </footer>
+
+    <script src="library.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
