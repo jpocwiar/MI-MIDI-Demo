@@ -1,37 +1,27 @@
 # MI-MIDI Demo
 
-A bilingual static listening atlas for activation interventions in symbolic
-text-to-MIDI models. It contains:
-
-- every steering clip currently included in the demo repository;
-- the complete saved piano-to-violin activation-patching listening run for
-  MIDI-LLM and text2midi (all ten seeds and all saved intervention sites);
-- current aggregate E4 conclusions, explicitly separated from the earlier
-  listening protocol;
-- original MIDI downloads and instrument-aware piano rolls;
-- a link to the companion [MI-MIDI V2 SAE atlas](https://jpocwiar.github.io/MI-MIDIv2-Demo/).
+A compact bilingual listening demo for steering and activation patching in
+MIDI-LLM and text2midi.
 
 ## Run locally
 
-From this directory:
-
 ```bash
-python3 -m http.server 8000
+python3 -m http.server 8000 --directory demo/MI-MIDI-Demo
 ```
 
-Then visit `http://localhost:8000`.
+Then visit <http://localhost:8000>.
 
-## Rebuild the library
+## Rebuild the media library
 
-From the parent research repository:
+The patching token JSON files must first be copied from the experiment output
+to `/private/tmp/mi-midi-e4-tokens/{midi_llm,text2midi}`. Then run:
 
 ```bash
-.venv/bin/python demo/MI-MIDI-Demo/build_demo_library.py --render --jobs 4
+.venv/bin/python demo/MI-MIDI-Demo/build_demo_library.py --jobs 4
 ```
 
-The builder inventories the steering showcase, copies the two instrument
-patching MIDI archives, renders patching audio and piano rolls with FluidSynth
-and MuseScore General 0.2, validates all referenced media, and regenerates
-`library.js`.
+The builder copies the selected steering MIDI files, decodes the selected
+patching sequences, renders MP3 and piano-roll previews, validates every
+referenced file, and regenerates `library.js`.
 
 The public site is hosted at <https://jpocwiar.github.io/MI-MIDI-Demo/>.

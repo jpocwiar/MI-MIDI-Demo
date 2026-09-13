@@ -3,55 +3,47 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="Dwujęzyczny atlas steeringu i activation patchingu w modelach generujących muzykę symboliczną.">
+    <meta name="description" content="MI-MIDI — steering i activation patching modeli generujących muzykę symboliczną.">
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="styles.css">
-    <title>MI-MIDI — atlas interwencji</title>
+    <title>MI-MIDI</title>
   </head>
   <body>
     <header class="hero">
-      <div class="language-switch" aria-label="Language">
-        <button class="language-button" type="button" data-language="pl">PL</button>
-        <button class="language-button" type="button" data-language="en">EN</button>
-      </div>
-      <div class="eyebrow" data-text="heroEyebrow"></div>
-      <h1 data-text="heroTitle"></h1>
-      <p class="lead" data-text="heroLead"></p>
-      <div class="stats" id="stats"></div>
-      <a class="sae-link" href="https://jpocwiar.github.io/MI-MIDIv2-Demo/">
-        <span data-text="saeLinkKicker"></span>
-        <strong data-text="saeLink"></strong>
-        <span aria-hidden="true">→</span>
-      </a>
+      <h1>MI-MIDI</h1>
     </header>
-
-    <section class="method">
-      <details>
-        <summary data-text="methodSummary"></summary>
-        <div class="method-grid" id="methodGrid"></div>
-      </details>
-    </section>
 
     <nav class="toolbar" aria-label="Intervention type">
       <div class="tabs">
-        <button class="tab is-active" type="button" data-view="steering" data-text="steeringTab"></button>
-        <button class="tab" type="button" data-view="patching" data-text="patchingTab"></button>
+        <button class="tab is-active" type="button" data-view="steering">Steering</button>
+        <button class="tab" type="button" data-view="patching">Activation patching</button>
       </div>
-      <div class="toolbar-language" aria-label="Language">
+      <div class="languages" aria-label="Language">
         <button class="language-button" type="button" data-language="pl">PL</button>
         <button class="language-button" type="button" data-language="en">EN</button>
       </div>
     </nav>
 
     <main>
-      <section id="steeringView" class="view"></section>
-      <section id="patchingView" class="view" hidden></section>
+      <section id="steeringView" class="view">
+        <div class="controls">
+          <label><span data-text="model"></span><select id="steeringModel"></select></label>
+          <label><span data-text="concept"></span><select id="steeringConcept"></select></label>
+        </div>
+        <div id="steeringSamples" class="sample-grid steering-grid"></div>
+      </section>
+
+      <section id="patchingView" class="view" hidden>
+        <div class="controls">
+          <label><span data-text="model"></span><select id="patchingModel"></select></label>
+          <label><span data-text="direction"></span><select id="patchingDirection"></select></label>
+        </div>
+        <div id="patchingSamples" class="sample-grid patching-grid"></div>
+      </section>
     </main>
 
-    <footer class="footer">
-      <p data-text="footerAudio"></p>
-      <p data-text="footerProvenance"></p>
-      <p><a href="https://jpocwiar.github.io/MI-MIDIv2-Demo/" data-text="saeFooter"></a></p>
+    <footer>
+      <a href="https://jpocwiar.github.io/MI-MIDIv2-Demo/" data-text="saeLink"></a>
     </footer>
 
     <script src="library.js"></script>
