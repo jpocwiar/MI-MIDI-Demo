@@ -1,7 +1,8 @@
 # MI-MIDI Demo
 
-A compact bilingual listening demo for steering and activation patching in
-MIDI-LLM and text2midi.
+A bilingual listening demo for steering and activation patching in MIDI-LLM
+and text2midi. It includes all ten steering prompts per model and concept and
+all thirty patching prompt/seed pairs per model and direction.
 
 ## Run locally
 
@@ -20,8 +21,8 @@ to `/private/tmp/mi-midi-e4-tokens/{midi_llm,text2midi}`. Then run:
 .venv/bin/python demo/MI-MIDI-Demo/build_demo_library.py --jobs 4
 ```
 
-The builder copies the selected steering MIDI files, decodes the selected
-patching sequences, renders MP3 and piano-roll previews, validates every
-referenced file, and regenerates `library.js`.
+The builder copies the steering MIDI files, decodes the patching sequences,
+renders MP3 and piano-roll previews, validates every referenced file, and
+regenerates `library.js`.
 
 The public site is hosted at <https://jpocwiar.github.io/MI-MIDI-Demo/>.
