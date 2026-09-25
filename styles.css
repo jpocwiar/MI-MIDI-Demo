@@ -142,6 +142,7 @@ button:focus-visible, select:focus-visible, a:focus-visible, summary:focus-visib
 @media (max-width: 440px) {
   .hero { min-height: 280px; }
   .toolbar { gap: .2rem; padding-inline: .6rem; }
+  .tabs { min-width: 0; overflow-x: auto; }
   .tab { padding: .5rem .42rem; font-size: .78rem; }
   .controls label { min-width: 100%; }
   .language-button { min-width: 34px; padding: .4rem .3rem; }
