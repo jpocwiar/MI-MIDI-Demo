@@ -3,29 +3,44 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="MI-MIDI — steering i activation patching modeli generujących muzykę symboliczną.">
+    <meta name="description" content="MI-MIDI — próbki dźwiękowe dla sterowania wektorami różnicowymi i podmiany aktywacji w modelach text-to-MIDI.">
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="styles.css">
     <title>MI-MIDI</title>
   </head>
   <body>
     <header class="hero">
+      <div class="language-switch" aria-label="Language">
+        <button class="language-button" type="button" data-language="pl">PL</button>
+        <button class="language-button" type="button" data-language="en">EN</button>
+      </div>
+      <div class="eyebrow" data-text="heroEyebrow"></div>
       <h1>MI-MIDI</h1>
+      <p class="hero-section" data-text="heroSection"></p>
+      <p class="lead" data-text="heroLead"></p>
     </header>
 
     <nav class="toolbar" aria-label="Intervention type">
-      <div class="tabs">
-        <button class="tab is-active" type="button" data-view="steering">Steering</button>
-        <button class="tab" type="button" data-view="patching">Activation patching</button>
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" type="button" role="tab" aria-controls="steeringView" data-view="steering">Steering</button>
+        <button class="tab" type="button" role="tab" aria-controls="patchingView" data-view="patching">Activation patching</button>
       </div>
-      <div class="languages" aria-label="Language">
+      <div class="toolbar-language" aria-label="Language">
         <button class="language-button" type="button" data-language="pl">PL</button>
         <button class="language-button" type="button" data-language="en">EN</button>
       </div>
     </nav>
 
     <main>
-      <section id="steeringView" class="view">
+      <section class="guide" aria-labelledby="guideTitle">
+        <div class="guide-copy">
+          <h2 id="guideTitle"></h2>
+          <p id="guideText"></p>
+        </div>
+        <div class="comparison-key" id="guideKey"></div>
+      </section>
+
+      <section id="steeringView" class="view" role="tabpanel">
         <div class="controls">
           <label><span data-text="model"></span><select id="steeringModel"></select></label>
           <label><span data-text="concept"></span><select id="steeringConcept"></select></label>
@@ -33,7 +48,7 @@
         <div id="steeringSamples"></div>
       </section>
 
-      <section id="patchingView" class="view" hidden>
+      <section id="patchingView" class="view" role="tabpanel" hidden>
         <div class="controls">
           <label><span data-text="model"></span><select id="patchingModel"></select></label>
           <label><span data-text="direction"></span><select id="patchingDirection"></select></label>
@@ -42,8 +57,9 @@
       </section>
     </main>
 
-    <footer>
+    <footer class="footer">
       <a href="https://jpocwiar.github.io/MI-MIDIv2-Demo/" data-text="saeLink"></a>
+      <a href="SOUNDFONT_LICENSE.md" data-text="licenseLink"></a>
     </footer>
 
     <script src="library.js"></script>
