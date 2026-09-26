@@ -92,7 +92,6 @@ select { width: 100%; padding: .65rem .75rem; color: var(--ink); background: #ff
 .configuration-grid div { display: grid; align-content: start; gap: .2rem; padding: .68rem .72rem; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
 .configuration-grid span { color: var(--muted); font-size: .68rem; font-weight: 780; letter-spacing: .05em; text-transform: uppercase; }
 .configuration-grid b { font-size: .86rem; line-height: 1.35; }
-.configuration p { max-width: 1100px; margin: .75rem 0 0; color: #4f5c54; font-size: .88rem; }
 .example { display: block; margin: 0 0 .75rem; overflow: hidden; background: rgba(255, 254, 250, .62); border: 1px solid var(--line); border-radius: 12px; }
 .example > summary { display: grid; grid-template-columns: auto 1fr auto; gap: .8rem; align-items: baseline; padding: .85rem 1rem; cursor: pointer; list-style: none; }
 .example > summary::-webkit-details-marker { display: none; }

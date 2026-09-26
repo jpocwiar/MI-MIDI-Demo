@@ -17,27 +17,16 @@ const I18N = {
       polyphony: ["mniejsza polifonia", "większa polifonia"],
     },
     steeringGuideTitle: "Interpretacja sterowania wektorami",
-    steeringGuideText: "Dla wybranego modelu i konceptu zestawiono pięć generacji z tego samego opisu wejściowego. Wartość α = 0 oznacza generację bazową, natomiast wartości ujemne i dodatnie odpowiadają przeciwnym orientacjom kierunku sterującego.",
+    steeringGuideText: "Dla wybranego modelu i konceptu zestawiono pięć generacji z tego samego opisu wejściowego. Wartość α = 0 oznacza generację bazową, natomiast wartości ujemne i dodatnie odpowiadają przeciwnym orientacjom kierunku sterującego. Pokazano konfigurację o najsilniejszej odpowiedzi kierunkowej spośród badanych wariantów wielowarstwowych.",
     patchingGuideTitle: "Interpretacja podmiany aktywacji",
-    patchingGuideText: "Dla każdej pary opisów wejściowych przedstawiono przebieg bazowy, przebieg źródłowy oraz przebieg po podmianie aktywacji. Interwencja ma przenieść informację o instrumencie z opisu źródłowego do generacji warunkowanej opisem bazowym. Miejsce interwencji wybiera się z listy warstw; domyślnie wyświetlany jest najlepiej oceniony wariant dla danego modelu. Dla każdego kierunku pokazano pełny zbiór 30 obserwacji: dziesięć szablonów opisu i trzy ziarna losowe. Przykład o największym zaobserwowanym transferze instrumentu umieszczono jako pierwszy, bez przypisywania mu osobnej kategorii.",
+    patchingGuideText: "Każdy przykład zestawia przebieg bazowy, źródłowy i wynik po podmianie aktywacji. Warstwę podmiany można zmieniać selektorem. Dla każdego kierunku pokazano wszystkie 30 obserwacji.",
     axisNegative: "ujemne α", axisBaseline: "α = 0", axisPositive: "dodatnie α",
     example: "Przykład",
     configurationTitle: "Konfiguracja prezentowanej serii",
-    directionMethod: "Wyznaczenie kierunku",
-    directionMethodValue: "różnica średnich z 25 par przeciwstawnych opisów",
     sourceLayer: "Warstwa źródłowa kierunku",
     interventionStrategy: "Strategia interwencji",
-    interventionStrategyValue: "ten sam kierunek dodawany we wszystkich warstwach",
-    alphaMode: "Sposób skalowania",
-    alphaModeValue: "bezwzględny: h′ = h + αd",
-    alphaValues: "Porównywane wartości α",
-    promptRepresentation: "Reprezentacja opisu",
-    promptRepresentations: {
-      midi_llm: "aktywacja na ostatniej pozycji tekstowej",
-      text2midi: "średnia aktywacja po pozycjach wspólnego wejścia dekodera",
-    },
-    configurationRationale: "Tempo, rejestr i polifonię wybrano jako uporządkowane własności, które można opisać słowami i mierzyć bezpośrednio w zapisie MIDI. Dla każdej pary model–koncept pokazano wariant o najsilniejszej odpowiedzi kierunkowej spośród stabilnych konfiguracji z interwencją we wszystkich warstwach.",
-    sampleRationale: "Udostępniono pełny zbiór dziesięciu opisów wejściowych wykorzystanych w głównym eksperymencie, wspólny dla obu modeli i wszystkich trzech konceptów. Jako pierwszy umieszczono przykład, w którym zmiana jest najczytelniejsza w odsłuchu i na rolce pianolowej; pozostałych wyników nie odfiltrowano.",
+    interventionStrategyValue: "we wszystkie warstwy",
+    alphaValues: "Współczynnik sterowania",
     source: "Przebieg źródłowy", baseline: "Przebieg bazowy", patched: "Przebieg po podmianie aktywacji",
     sourcePrompt: "Źródłowy opis wejściowy", baselinePrompt: "Bazowy opis wejściowy",
     layer: "Warstwa", allLayers: "Wszystkie warstwy", download: "MIDI",
@@ -61,27 +50,16 @@ const I18N = {
       polyphony: ["lower polyphony", "higher polyphony"],
     },
     steeringGuideTitle: "Reading the steering comparison",
-    steeringGuideText: "For each model and concept, five generations obtained from the same prompt are shown. α = 0 denotes the baseline generation; negative and positive values correspond to opposite orientations of the steering direction.",
+    steeringGuideText: "For each model and concept, five generations obtained from the same prompt are shown. α = 0 denotes the baseline generation; negative and positive values correspond to opposite orientations of the steering direction. The configuration with the strongest directional response among the evaluated all-layer variants is shown.",
     patchingGuideTitle: "Reading the activation-patching comparison",
-    patchingGuideText: "Each prompt pair includes a baseline generation, a source generation, and the result after activation patching. The intervention transfers instrument information from the source prompt into the generation conditioned on the baseline prompt. The intervention site can be selected by layer; the best-performing site selected for the model is displayed by default. The complete set of 30 observations per direction is included: ten prompt templates and three random seeds. The pair with the largest observed instrument transfer is placed first without assigning it a separate category.",
+    patchingGuideText: "Each example compares the baseline run, source run, and result after activation patching. The patching layer can be changed with the selector. All 30 observations are shown for each direction.",
     axisNegative: "negative α", axisBaseline: "α = 0", axisPositive: "positive α",
     example: "Example",
     configurationTitle: "Configuration shown",
-    directionMethod: "Direction construction",
-    directionMethodValue: "difference in means over 25 contrastive prompt pairs",
     sourceLayer: "Direction source layer",
     interventionStrategy: "Intervention strategy",
-    interventionStrategyValue: "the same direction added at every layer",
-    alphaMode: "Scaling mode",
-    alphaModeValue: "absolute: h′ = h + αd",
-    alphaValues: "Compared α values",
-    promptRepresentation: "Prompt representation",
-    promptRepresentations: {
-      midi_llm: "activation at the final text position",
-      text2midi: "mean activation over the shared decoder-input positions",
-    },
-    configurationRationale: "Tempo, register, and polyphony were selected as ordered attributes that can be stated in language and measured directly from symbolic MIDI. For each model–concept pair, the displayed series is the strongest directional response among stable all-layer configurations.",
-    sampleRationale: "The complete ten-prompt evaluation set is included and is shared across both models and all three concepts. The example with the clearest change in listening and piano-roll inspection is placed first; no remaining result is filtered out.",
+    interventionStrategyValue: "all layers",
+    alphaValues: "Steering coefficient",
     source: "Source generation", baseline: "Baseline generation", patched: "After activation patching",
     sourcePrompt: "Source prompt", baselinePrompt: "Baseline prompt",
     layer: "Layer", allLayers: "All layers", download: "MIDI",
@@ -158,18 +136,18 @@ function steeringExample(group, ordinal, initiallyOpen) {
 
 function renderSteeringConfiguration(model, concept, example) {
   const configuration = STEERING_CONFIGURATIONS[model][concept];
+  const separator = language === "pl" ? "; " : ", ";
+  const alphaValues = example.items.map((item) => {
+    const value = Number(item.alpha).toString();
+    return language === "pl" ? value.replace("-", "−").replace(".", ",") : value.replace("-", "−");
+  }).join(separator);
   document.querySelector("#steeringConfiguration").innerHTML = `
     <h2>${t("configurationTitle")}</h2>
     <div class="configuration-grid">
-      <div><span>${t("directionMethod")}</span><b>${t("directionMethodValue")}</b></div>
-      <div><span>${t("sourceLayer")}</span><b>ℓ* = ${configuration.sourceLayer} (${language === "pl" ? "numeracja od 0" : "zero-based"})</b></div>
+      <div><span>${t("sourceLayer")}</span><b>ℓ* = ${configuration.sourceLayer}</b></div>
       <div><span>${t("interventionStrategy")}</span><b>${t("interventionStrategyValue")}</b></div>
-      <div><span>${t("alphaMode")}</span><b>${t("alphaModeValue")}</b></div>
-      <div><span>${t("alphaValues")}</span><b>${example.items.map((item) => alphaLabel(item.alpha)).join(" · ")}</b></div>
-      <div><span>${t("promptRepresentation")}</span><b>${t("promptRepresentations")[model]}</b></div>
-    </div>
-    <p>${t("configurationRationale")}</p>
-    <p>${t("sampleRationale")}</p>`;
+      <div><span>${t("alphaValues")}</span><b>α ∈ {${alphaValues}}</b></div>
+    </div>`;
 }
 
 function renderSteering() {
